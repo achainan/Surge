@@ -333,6 +333,14 @@ public func transpose(_ x: Matrix<Double>) -> Matrix<Double> {
     return results
 }
 
+public func dot(_ x: Surge.Matrix<Double>, y: Surge.Matrix<Double>) -> Surge.Matrix<Double> {
+  return mul(x, y: transpose(y))
+}
+
+public func dot(_ x: Surge.Matrix<Float>, y: Surge.Matrix<Float>) -> Matrix<Float> {
+  return mul(x, y: transpose(y))
+}
+
 // MARK: - Operators
 
 public func + (lhs: Matrix<Float>, rhs: Matrix<Float>) -> Matrix<Float> {
