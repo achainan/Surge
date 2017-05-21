@@ -390,7 +390,16 @@ public func transpose(_ x: Matrix<Double>) -> Matrix<Double> {
 }
 
 public func dot(_ x: Surge.Matrix<Double>, y: Surge.Matrix<Double>) -> Surge.Matrix<Double> {
-  return mul(x, y: transpose(y))
+  var result = y
+  var pos = 0
+  for i in 0..<x.rows {
+    for j in 0..<y.columns {
+      result.grid[pos] = dot(x[row: i], y: y[column: j])
+      pos=pos+1
+    }
+  }
+  
+  return result
 }
 
 public func dot(_ x: Surge.Matrix<Float>, y: Surge.Matrix<Float>) -> Matrix<Float> {
