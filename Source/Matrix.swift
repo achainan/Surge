@@ -356,6 +356,14 @@ public func exp(_ x: Matrix<Float>) -> Matrix<Float> {
     return result
 }
 
+public func sum(_ x: Matrix<Float>) -> Float {
+    return sum(x.grid)
+}
+
+public func sum(_ x: Matrix<Double>) -> Double {
+    return sum(x.grid)
+}
+
 public func sum(_ x: Matrix<Double>, axies: MatrixAxies = .column) -> Matrix<Double> {
     
     switch axies {
