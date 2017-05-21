@@ -219,7 +219,7 @@ public func mulrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double
 }
 
 public func plusrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
-    precondition(vector.columns == 1, "Vector dimensions not compatible with row addition")
+    precondition(x.columns == vector.columns, "Vector dimensions not compatible with row addition")
 
     var temp = Array<Array<Float>>()
     for i in 0..<x.rows {
