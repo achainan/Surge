@@ -162,21 +162,59 @@ public func ==<T> (lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
 
 // MARK: -
 
-public func mul(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
-  precondition(vector.columns == 1, "Vector dimensions not compatible with multiplication")
-
-  var results = vector
-  cblas_sgemv(CblasRowMajor, CblasNoTrans, Int32(x.rows), Int32(x.columns), 1.0, x.grid, Int32(x.columns), vector.grid, 1, 1.0, &(results.grid), 1)
+public func divrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
+  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
   
+  var temp = Array<Array<Float>>()
+  for i in 0..<x.rows {
+    let rows = x[row: i]
+    let div = vector.grid[i]
+    temp.append(rows / div)
+  }
+  
+  let results = Matrix<Float>(temp)
   return results
 }
 
-public func mul(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
-//  precondition(vector.columns == 1, "Vector dimensions not compatible with multiplication")
-
-  var results = vector
-  cblas_dgemv(CblasRowMajor, CblasNoTrans, Int32(x.rows), Int32(x.columns), 1.0, x.grid, Int32(x.columns), vector.grid, 1, 1.0, &(results.grid), 1)
+public func divrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
+  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
   
+  var temp = Array<Array<Double>>()
+  for i in 0..<x.rows {
+    let rows = x[row: i]
+    let div = vector.grid[i]
+    temp.append(rows / div)
+  }
+  
+  let results = Matrix<Double>(temp)
+  return results
+}
+
+public func mulrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
+  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+  
+  var temp = Array<Array<Float>>()
+  for i in 0..<x.rows {
+    let rows = x[row: i]
+    let mul = vector.grid[i]
+    temp.append(rows * mul)
+  }
+  
+  let results = Matrix<Float>(temp)
+  return results
+}
+
+public func mulrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
+  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+
+  var temp = Array<Array<Double>>()
+  for i in 0..<x.rows {
+    let rows = x[row: i]
+    let mul = vector.grid[i]
+    temp.append(rows * mul)
+  }
+  
+  let results = Matrix<Double>(temp)
   return results
 }
 

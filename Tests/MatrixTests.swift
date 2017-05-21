@@ -44,7 +44,8 @@ class MatrixTests: XCTestCase {
     }
   
     func testVectorMultiplication() {
-      let vector = Matrix<Double>([[1],[2],[2],[3]])      
-      XCTAssertEqual(mul(matrix, vector: vector), Matrix<Double>([[24],[57],[89],[3]]))
+      let vector = Matrix<Double>([[10,20,1]])
+      XCTAssertEqual(mulrow(matrix, vector: vector), Matrix<Double>([[10, 20, 30, 40],[100,120,140,160],[9, 10, 11, 12]]))
+      XCTAssertEqual(divrow(matrix, vector: vector), Matrix<Double>([[0.1, 0.2, 0.3, 0.4],[0.25,0.3,0.35,0.4],[9, 10, 11, 12]]))
     }
 }
