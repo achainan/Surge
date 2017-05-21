@@ -44,7 +44,7 @@ public struct Matrix<T> where T: FloatingPoint, T: ExpressibleByFloatLiteral {
     public init(_ contents: [[Element]]) {
         let m: Int = contents.count
         let n: Int = contents[0].count
-        let repeatedValue: Element = 0.0 
+        let repeatedValue: Element = 0.0
 
         self.init(rows: m, columns: n, repeatedValue: repeatedValue)
 
@@ -163,7 +163,7 @@ public func ==<T> (lhs: Matrix<T>, rhs: Matrix<T>) -> Bool {
 // MARK: -
 
 public func divrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
-  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+  precondition(vector.columns == 1, "Vector dimensions not compatible with row multiplication")
   
   var temp = Array<Array<Float>>()
   for i in 0..<x.rows {
@@ -177,7 +177,7 @@ public func divrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
 }
 
 public func divrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
-  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+  precondition(vector.columns == 1, "Vector dimensions not compatible with row multiplication")
   
   var temp = Array<Array<Double>>()
   for i in 0..<x.rows {
@@ -191,7 +191,7 @@ public func divrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double
 }
 
 public func mulrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
-  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+  precondition(vector.columns == 1, "Vector dimensions not compatible with row multiplication")
   
   var temp = Array<Array<Float>>()
   for i in 0..<x.rows {
@@ -205,7 +205,7 @@ public func mulrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
 }
 
 public func mulrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
-  precondition(vector.rows == 1, "Vector dimensions not compatible with row multiplication")
+  precondition(vector.columns == 1, "Vector dimensions not compatible with row multiplication")
 
   var temp = Array<Array<Double>>()
   for i in 0..<x.rows {

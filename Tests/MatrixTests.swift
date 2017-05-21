@@ -44,15 +44,20 @@ class MatrixTests: XCTestCase {
     }
   
     func testVectorMultiplication() {
-      let vector = Matrix<Double>([[10,20,1]])
-      XCTAssertEqual(mulrow(matrix, vector: vector), Matrix<Double>([[10, 20, 30, 40],[100,120,140,160],[9, 10, 11, 12]]))
-      XCTAssertEqual(divrow(matrix, vector: vector), Matrix<Double>([[0.1, 0.2, 0.3, 0.4],[0.25,0.3,0.35,0.4],[9, 10, 11, 12]]))
+        let vector = Matrix<Double>([[10],[20],[1]])
+        XCTAssertEqual(mulrow(matrix, vector: vector), Matrix<Double>([[10, 20, 30, 40],[100,120,140,160],[9, 10, 11, 12]]))
     }
+    
+    func testVectorDivision() {
+        let vector = Matrix<Double>([[10],[20],[1]])
+        XCTAssertEqual(divrow(matrix, vector: vector), Matrix<Double>([[0.1, 0.2, 0.3, 0.4],[0.25,0.3,0.35,0.4],[9, 10, 11, 12]]))
+    }
+    
   
     func testDotProduct() {
-      let test = Matrix<Double>([[1,2], [3,4]])
-      let vector = Matrix<Double>([[1,2], [3,4]])
-      XCTAssertEqual(dot(test, y: vector), Matrix<Double>([[7,10],[15, 22]]))
+        let test = Matrix<Double>([[1,2], [3,4]])
+        let vector = Matrix<Double>([[1,2], [3,4]])
+        XCTAssertEqual(dot(test, y: vector), Matrix<Double>([[7,10],[15, 22]]))
     }
 
 }
