@@ -218,6 +218,44 @@ public func mulrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double
   return results
 }
 
+public func plusrow(_ x: Matrix<Float>, vector: Matrix<Float>) -> Matrix<Float> {
+    precondition(vector.columns == 1, "Vector dimensions not compatible with row addition")
+
+    var temp = Array<Array<Float>>()
+    for i in 0..<x.rows {
+        let rows = x[row: i]
+        var temp2 = Array<Float>()
+        for j in 0..<rows.count {
+            let row = rows[j]
+            let plus = vector.grid[j]
+            temp2.append(row + plus)
+        }
+        temp.append(temp2)
+    }
+
+    let results = Matrix<Float>(temp)
+    return results
+}
+
+public func plusrow(_ x: Matrix<Double>, vector: Matrix<Double>) -> Matrix<Double> {
+    precondition(vector.columns == 1, "Vector dimensions not compatible with row addition")
+
+    var temp = Array<Array<Double>>()
+    for i in 0..<x.rows {
+        let rows = x[row: i]
+        var temp2 = Array<Double>()
+        for j in 0..<rows.count {
+            let row = rows[j]
+            let plus = vector.grid[j]
+            temp2.append(row + plus)
+        }
+        temp.append(temp2)
+    }
+
+    let results = Matrix<Double>(temp)
+    return results
+}
+
 public func add(_ x: Matrix<Float>, y: Matrix<Float>) -> Matrix<Float> {
     precondition(x.rows == y.rows && x.columns == y.columns, "Matrix dimensions not compatible with addition")
 
@@ -390,16 +428,18 @@ public func transpose(_ x: Matrix<Double>) -> Matrix<Double> {
 }
 
 public func dot(_ x: Surge.Matrix<Double>, y: Surge.Matrix<Double>) -> Surge.Matrix<Double> {
-  var result = y
+  precondition(x.columns == y.rows, "Number of columns of the 1st matrix must equal to the number of rows of the 2nd one")
+
+  var results = Matrix<Double>(rows: x.rows, columns: y.columns, repeatedValue: 0.0)
   var pos = 0
   for i in 0..<x.rows {
     for j in 0..<y.columns {
-      result.grid[pos] = dot(x[row: i], y: y[column: j])
+      results.grid[pos] = dot(x[row: i], y: y[column: j])
       pos=pos+1
     }
   }
-  
-  return result
+
+  return results
 }
 
 public func dot(_ x: Surge.Matrix<Float>, y: Surge.Matrix<Float>) -> Matrix<Float> {
