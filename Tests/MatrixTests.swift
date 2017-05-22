@@ -59,5 +59,12 @@ class MatrixTests: XCTestCase {
         let vector = Matrix<Double>([[1,2], [3,4]])
         XCTAssertEqual(dot(test, y: vector), Matrix<Double>([[7,10],[15, 22]]))
     }
+    
+    func testMaximum() {
+        let input = Matrix<Double>([[1,-2], [-3,4]])
+        let expected = Matrix<Double>([[1,0], [0,4]])
+        XCTAssertEqual(maximum(0, x: input), expected)
+    }
+
 
 }

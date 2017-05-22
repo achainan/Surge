@@ -435,6 +435,15 @@ public func transpose(_ x: Matrix<Double>) -> Matrix<Double> {
     return results
 }
 
+public func maximum(_ maximum: Double, x: Surge.Matrix<Double>) -> Surge.Matrix<Double> {
+    var results = x
+    for i in 0..<x.rows*x.columns {
+        results.grid[i] = max(maximum, results.grid[i])
+    }
+    
+    return results
+}
+
 public func dot(_ x: Surge.Matrix<Double>, y: Surge.Matrix<Double>) -> Surge.Matrix<Double> {
   precondition(x.columns == y.rows, "Number of columns of the 1st matrix must equal to the number of rows of the 2nd one")
 
